@@ -19,7 +19,7 @@ window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecogn
     speechRecognizer.lang = 'en-IN'
   }
 
-  var finalTranscripts = '';
+  let finalTranscripts = '';
 
 class App extends React.Component {
     constructor() {
@@ -34,24 +34,26 @@ class App extends React.Component {
   }
 
   onButtonPress = () => {
-    var r = document.getElementById('result')
+    let note = document.getElementById('result')
     
       speechRecognizer.start()
   
   
       speechRecognizer.onresult = (event) => {
-        var interimTranscripts = ''
+        let interimTranscripts = ''
         for(var i = 0;i < event.results.length; i++){
-          var transcript = event.results[i][0].transcript
+          let transcript = event.results[i][0].transcript
           if (event.results[i].isFinal){
             finalTranscripts += transcript
           } else {
             interimTranscripts += transcript
           }
         }
-        r.innerHTML = finalTranscripts + '<span style="color:#999>' + interimTranscripts + '</span>'
+        note.innerHTML = finalTranscripts + '<span style="color:#999>' + interimTranscripts + '</span>'
+        this.setState({ input: finalTranscripts + interimTranscripts })
       }
       console.log('Working')
+
   
       speechRecognizer.onerror = (event) => {
         console.log(event)
@@ -60,8 +62,8 @@ class App extends React.Component {
   }
 
   changeSpeechRouteStop = () => {
-    speechRecognizer.stop()
-    this.setState({ input:finalTranscripts })
+    speechRecognizer.stop() 
+    console.log(this.state.input)
    }
 
   changeSpeechRouteStart = () => {
@@ -76,6 +78,16 @@ class App extends React.Component {
       this.setState({ isSignedIn: true })
     }
     this.setState({ route: route })
+  }
+
+  onReset = () => {
+    let note = document.getElementById('result')
+    this.setState({ input: '' })
+    note.innerHTML =  ''
+  }
+
+  onSave = () => {
+    console.log('Save')
   }
 
   render(){
@@ -93,6 +105,8 @@ class App extends React.Component {
                       <SpeechRecognition 
                       onButtonPress={this.onButtonPress} 
                       changeSpeechRouteStop={this.changeSpeechRouteStop}
+                      onReset={this.onReset}
+                      onSave={this.onSave}
                       />
                     </div>
                     : (
