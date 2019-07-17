@@ -2,11 +2,11 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: -webkit-linear-gradient(to right, #3a6186 0%, #89253e 100%);
-  background: linear-gradient(to right, #3a6186 0%, #89253e 100%);
+  background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+

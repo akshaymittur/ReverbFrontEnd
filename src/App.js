@@ -4,6 +4,9 @@ import Logo from './Components/Logo/Logo'
 import Title from './Components/Title/Title'
 import CardList from './Components/CardList/CardList'
 import SpeechRecognition from './Components/SpeechRecognition/SpeechRecognition'
+import Signin from './Components/Signin/Signin'
+import Register from './Components/Register/Register'
+
 import './App.css'
 import 'tachyons'
 
@@ -16,22 +19,25 @@ window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecogn
     speechRecognizer.lang = 'en-IN'
   }
 
+  var finalTranscripts = '';
+
 class App extends React.Component {
     constructor() {
     super()
     this.state = {
       input: '',
-      speechroute: ''
+      speechroute: '',
+      route: 'signin',
+      isSignedIn: false
     }
     this.onButtonPress = this.onButtonPress.bind(this)
   }
 
-  onButtonPress() {
+  onButtonPress = () => {
     var r = document.getElementById('result')
     
       speechRecognizer.start()
   
-      var finalTranscripts = '';
   
       speechRecognizer.onresult = (event) => {
         var interimTranscripts = ''
@@ -53,26 +59,50 @@ class App extends React.Component {
       } 
   }
 
-  changeSpeechRouteStop() {
+  changeSpeechRouteStop = () => {
     speechRecognizer.stop()
+    this.setState({ input:finalTranscripts })
    }
 
-  changeSpeechRouteStart() {
+  changeSpeechRouteStart = () => {
     this.setState({speechroute: 'start'})
     this.onButtonPress();
    }
 
+  onRouteChange = (route) => {
+    if (route === 'signout') {
+      this.setState({ isSignedIn: false })
+    } else if (route === 'home') {
+      this.setState({ isSignedIn: true })
+    }
+    this.setState({ route: route })
+  }
+
   render(){
     return (
       <div className="App">
-        <Navigation />
-        <Logo />
-        <Title />
-        <CardList />
-        <SpeechRecognition 
-        onButtonPress={this.onButtonPress} 
-        changeSpeechRouteStop={this.changeSpeechRouteStop}
+        <Navigation 
+        onRouteChange={this.onRouteChange} 
+        isSignedIn={this.state.isSignedIn} 
         />
+        { this.state.route === 'home' ?
+        <div>
+                      <Logo />
+                      <Title />
+                      <CardList />
+                      <SpeechRecognition 
+                      onButtonPress={this.onButtonPress} 
+                      changeSpeechRouteStop={this.changeSpeechRouteStop}
+                      />
+                    </div>
+                    : (
+                      this.state.route === 'signin' ? 
+                      <Signin onRouteChange={this.onRouteChange} />
+                      : <Register onRouteChange={this.onRouteChange} />)
+                    
+                
+                  
+        }
       </div>
     )
   }
