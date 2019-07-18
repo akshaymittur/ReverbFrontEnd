@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Title = () => {
+const Title = ({ name }) => {
 
 	return(
 		<div>
 			<p className='f2 black courier tc fl w-100'>
-				{`Greetings, Jason!`}
+				{`Greetings, ${name}!`}
 			</p>
 		</div>
 	)
