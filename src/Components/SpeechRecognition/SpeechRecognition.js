@@ -55,6 +55,9 @@ class SpeechRecognition extends React.Component {
    onReset = () => {
     let note = document.getElementById('result')
     setTimeout(() => {
+    	speechRecognizer.abort()
+    	finalTranscripts = ''
+  		interimTranscripts = ''
     	this.setState({ input: '' })
     	console.log(this.state.input)
     	note.innerHTML =  ''	
