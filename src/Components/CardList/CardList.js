@@ -27,7 +27,7 @@ import Card from  '../Card/Card'
 			<div>
 			{
 				this.state.cardArray.map((note, i) => {
-					return (<Card key={i} note={note} />)
+					return (<Card key={i} note={note} id={this.props.id}/>)
 				})
 			}
 			</div>

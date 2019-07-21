@@ -5,7 +5,8 @@ class Card extends React.Component{
 	constructor(props) {
 		super(props)
 		this.state = {
-			note: this.props.note
+			note: this.props.note,
+			id: this.props.id
 		}
 	}
 
@@ -14,7 +15,8 @@ class Card extends React.Component{
 			method: 'delete',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
-				note: this.state.note
+				note: this.state.note,
+				id: this.state.id
 			})
 		})
 		.then(response => response.json)
