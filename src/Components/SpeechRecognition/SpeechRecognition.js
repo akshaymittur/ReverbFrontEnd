@@ -76,8 +76,7 @@ class SpeechRecognition extends React.Component {
 		})
 		.then(response => response.json())
 		.catch(err => console.log(err))
-
-		}, 500)
+	}, 500)
   }
 
 	render() {

@@ -20,7 +20,7 @@ import Card from  '../Card/Card'
 	.then(response => response.json())
 	.then(res => {
 		this.setState({cardArray : [...res[0].notes] })
-		})
+	})
 }
 	render() {
 		return(
@@ -31,7 +31,8 @@ import Card from  '../Card/Card'
 				})
 			}
 			</div>
-		)}
+		)
+	}
 }
 
 export default CardList
