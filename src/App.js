@@ -61,12 +61,13 @@ class App extends React.Component {
                     </div>
                     : (
                       this.state.route === 'signin' ? 
-                      <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
-                      : <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser}/>)
-                    
-                
-                  
-        }
+                      <Signin 
+                      loadUser={this.loadUser} 
+                      onRouteChange={this.onRouteChange} />
+                      : <Register 
+                      onRouteChange={this.onRouteChange} 
+                      loadUser={this.loadUser}/>)
+         }
       </div>
     )
   }

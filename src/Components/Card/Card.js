@@ -20,7 +20,6 @@ class Card extends React.Component{
 			})
 		})
 		.then(response => response.json)
-		.then(notes => console.log)
 		.catch(err => console.log)
 	}
 

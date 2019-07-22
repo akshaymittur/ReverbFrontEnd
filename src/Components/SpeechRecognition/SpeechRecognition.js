@@ -26,7 +26,6 @@ class SpeechRecognition extends React.Component {
 
 	 onButtonPress = () => {
     	let note = document.getElementById('result')
-  
       	speechRecognizer.start()
   	    speechRecognizer.onresult = (event) => {
 	        for(var i = 0;i < event.results.length; i++){
@@ -46,11 +45,11 @@ class SpeechRecognition extends React.Component {
 
 	onStop = () => {
 		speechRecognizer.stop()
-   }
+   	}
 
    changeSpeechRouteStart = () => {
     this.onButtonPress();
-   }
+   	}
 
    onReset = () => {
     let note = document.getElementById('result')
@@ -59,7 +58,6 @@ class SpeechRecognition extends React.Component {
     	finalTranscripts = ''
   		interimTranscripts = ''
     	this.setState({ input: '' })
-    	console.log(this.state.input)
     	note.innerHTML =  ''	
 	}, 500)
   }
@@ -67,9 +65,7 @@ class SpeechRecognition extends React.Component {
   onSave = () => {
   	setTimeout(() => {
 			this.setState({ input: document.getElementById("result").textContent })
-	      	console.log(this.state.input)
 	      	this.setState({ text: [...this.state.text, this.state.input] })
-	      	console.log(this.state.text)
 	      	fetch('http://localhost:3000/notesave', {
 			method:'put',
 			headers: {'Content-Type': 'application/json'},
@@ -79,11 +75,6 @@ class SpeechRecognition extends React.Component {
 			})
 		})
 		.then(response => response.json())
-		.then(user => {
-			if(user.id) {
-				console.log(user.notes)
-			}
-		})
 		.catch(err => console.log(err))
 
 		}, 500)
@@ -93,20 +84,24 @@ class SpeechRecognition extends React.Component {
 		return(
 			<div> 
 				<div id='result' className='paper'></div>
-					<button className='ma3 btn w-10 grow br-pill f4 mt6 link mb2 ph3 pv2 dib white bg-light-purple pointer' 
-							onClick={this.onButtonPress}>
+					<button 
+					className='ma3 btn w-10 grow br-pill f4 mt6 link mb2 ph3 pv2 dib white bg-light-purple pointer' 
+					onClick={this.onButtonPress}>
 					Detect
 					</button>
-					<button className='ma3 btn w-10 grow br-pill f4 link mb2 ph3 pv2 dib white bg-red pointer' 
-							onClick={this.onStop}>
+					<button 
+					className='ma3 btn w-10 grow br-pill f4 link mb2 ph3 pv2 dib white bg-red pointer' 
+					onClick={this.onStop}>
 					Stop
 					</button>
-					<button className='ma3 btn w-10 grow br-pill f4 link mb2 ph3 pv2 dib white bg-light-purple pointer' 
-							onClick={this.onReset}>
+					<button 
+					className='ma3 btn w-10 grow br-pill f4 link mb2 ph3 pv2 dib white bg-light-purple pointer' 
+					onClick={this.onReset}>
 					Reset
 					</button>
-					<button className='ma3 btn w-10 grow br-pill f4 link mb2 ph3 pv2 dib white bg-green pointer' 
-							onClick={this.onSave}>
+					<button 
+					className='ma3 btn w-10 grow br-pill f4 link mb2 ph3 pv2 dib white bg-green pointer' 
+					onClick={this.onSave}>
 					Save
 					</button>
 			</div>

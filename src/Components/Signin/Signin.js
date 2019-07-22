@@ -33,6 +33,10 @@ class Signin extends React.Component {
 			if(user.id) {
 				this.props.loadUser(user)
 				this.props.onRouteChange('home')
+			} else {
+				let inValid = document.getElementsByClassName('wrong')[0]
+				inValid.style.color = 'red'
+				inValid.innerHTML = 'Wrong Credentials'
 			}
 		})	
 	}
@@ -61,6 +65,8 @@ class Signin extends React.Component {
 				      type="submit" 
 				      value="Sign in"
 				       />
+				    </div>
+				    <div className="wrong mt3">
 				    </div>
 				    <div className="lh-copy mt3">
 				      <p onClick={() => onRouteChange('register')} className="f6 link dim black db pointer">Register</p>

@@ -1,12 +1,18 @@
 import React from 'react'
 import Tilt from 'react-tilt'
-import audio from './logo.png'
+import audio from './audio.png'
 
 const Logo = () => {
 	return(
-		<Tilt className="Tilt" options={{ max : 55 }} style={{ height: 100, width: 100 }} >
+		<Tilt 
+		className="Tilt" 
+		options={{ max : 55 }} 
+		style={{ height: 150, width: 150 }} >
 			<div className="Tilt-inner pa3"> 
-				<img src={audio} alt='Logo' style={{paddingTop: '3px'}}/> 
+				<img 
+				src={audio} 
+				alt='Logo' s
+				tyle={{paddingTop: '3px'}}/> 
 			</div>
 		</Tilt>
 		)

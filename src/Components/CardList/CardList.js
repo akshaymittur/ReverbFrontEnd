@@ -18,8 +18,8 @@ import Card from  '../Card/Card'
 		})
 		})
 	.then(response => response.json())
-	.then(notes => {
-		this.setState({cardArray : notes})
+	.then(res => {
+		this.setState({cardArray : [...res[0].notes] })
 		})
 }
 	render() {
