@@ -10,7 +10,7 @@ import Card from  '../Card/Card'
  	}
 	
  	componentDidMount(props){
- 		fetch('http://localhost:3000/getnotes', {
+ 		fetch('https://peaceful-sea-70256.herokuapp.com/getnotes', {
 		method: 'post',
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify({
