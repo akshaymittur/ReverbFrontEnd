@@ -66,7 +66,7 @@ class SpeechRecognition extends React.Component {
   	setTimeout(() => {
 			this.setState({ input: document.getElementById("result").textContent })
 	      	this.setState({ text: [...this.state.text, this.state.input] })
-	      	fetch('http://localhost:3000/notesave', {
+	      	fetch('https://peaceful-sea-70256.herokuapp.com/notesave', {
 			method:'put',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
